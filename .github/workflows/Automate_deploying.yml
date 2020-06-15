@@ -1,0 +1,25 @@
+name: Bootcamp 2020
+
+on:
+  push:
+    branches: [ master ]
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Installing Node
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 12   
+    - name: Installing Surge 
+      run: npm install --global surge
+    - name: Deploying using surge
+      run: surge ./ bootcamp_2020Assignment.surge.sh ${{ secrets.SURGE_TOKEN }}
+      
+      
+     
